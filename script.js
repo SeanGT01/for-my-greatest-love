@@ -2200,17 +2200,28 @@ function spawnHeartBurst(count = 15) {
 
 /* Toast Notifications */
 function showToast(message) {
+  if (!elements.toastContainer) return;
+
+  // Prevent toast crowding on mobile: dismiss previous toasts quickly
+  const existingToasts = elements.toastContainer.querySelectorAll('.toast-msg');
+  existingToasts.forEach(oldToast => {
+    oldToast.style.opacity = '0';
+    oldToast.style.transform = 'translateY(-10px) scale(0.95)';
+    setTimeout(() => oldToast.remove(), 180);
+  });
+
   const toast = document.createElement('div');
   toast.className = 'toast-msg';
+  toast.setAttribute('role', 'status');
   toast.textContent = message;
 
   elements.toastContainer.appendChild(toast);
 
   setTimeout(() => {
     toast.style.opacity = '0';
-    toast.style.transition = 'opacity 0.4s';
-    setTimeout(() => toast.remove(), 400);
-  }, 3200);
+    toast.style.transform = 'translateY(-10px) scale(0.95)';
+    setTimeout(() => toast.remove(), 300);
+  }, 2600);
 }
 
 

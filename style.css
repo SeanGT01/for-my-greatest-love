@@ -3468,30 +3468,74 @@ body.theme-dark .surprise-text {
 /* Toast Container */
 .toast-container {
   position: fixed;
-  top: 75px;
+  top: max(72px, calc(env(safe-area-inset-top, 0px) + 64px));
   left: 50%;
   transform: translateX(-50%);
-  z-index: 300;
+  z-index: 10000;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 6px;
   pointer-events: none;
+  width: calc(100% - 32px);
+  max-width: 440px;
 }
 
 .toast-msg {
-  background-color: var(--color-forest);
-  color: var(--color-white);
-  padding: 12px 24px;
+  background-color: rgba(33, 58, 42, 0.95);
+  color: #FFFFFF;
+  padding: 10px 20px;
   border-radius: var(--radius-full);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.9rem;
   font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  max-width: 100%;
+  width: fit-content;
+  word-break: break-word;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   animation: toastPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: auto;
 }
 
 @keyframes toastPop {
-  0% { transform: translateY(-20px) scale(0.9); opacity: 0; }
+  0% { transform: translateY(-16px) scale(0.92); opacity: 0; }
   100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .toast-container {
+    top: max(60px, calc(env(safe-area-inset-top, 0px) + 52px));
+    width: calc(100% - 24px);
+    max-width: 360px;
+    gap: 5px;
+  }
+
+  .toast-msg {
+    padding: 8px 16px;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    border-radius: 9999px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.26);
+  }
+}
+
+@media (max-width: 380px) {
+  .toast-container {
+    top: max(54px, calc(env(safe-area-inset-top, 0px) + 46px));
+    width: calc(100% - 16px);
+    max-width: 310px;
+  }
+
+  .toast-msg {
+    padding: 7px 13px;
+    font-size: 0.78rem;
+    letter-spacing: -0.2px;
+  }
 }
 
 /* ==========================================================================
@@ -3812,10 +3856,10 @@ body.theme-dark .subtle-btn:hover {
 }
 
 body.theme-dark .toast-msg {
-  background-color: #27402F;
+  background-color: rgba(27, 44, 32, 0.95);
   color: #F5EFE6;
-  border: 1px solid #4D7658;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(134, 219, 163, 0.28);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
 }
 
 /* 6. Chapter Cards, Garden & Footer */
