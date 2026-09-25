@@ -871,22 +871,161 @@ body.theme-dark .picker-dot-btn.active {
   background-color: var(--color-sage);
 }
 
-@media (max-width: 580px) {
-  .music-picker-carousel-wrap {
-    gap: 10px;
-    padding: 0;
+@media (max-width: 600px) {
+  .music-select-container {
+    padding: 28px 14px 36px;
   }
+
+  .music-screen-title {
+    font-size: clamp(1.65rem, 5.5vw, 2rem);
+    margin-bottom: 8px;
+  }
+
+  .music-screen-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 auto 24px;
+    padding: 0 6px;
+  }
+
+  .music-picker-carousel-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto 26px;
+    padding: 0 4px;
+    gap: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .music-single-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 18px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 0 3px rgba(53, 92, 67, 0.14), 0 14px 30px var(--color-shadow);
+  }
+
+  /* Ergonomic navigation buttons placed at thumb-height flanking the cassette */
   .music-picker-nav-btn {
+    position: absolute;
+    top: 104px;
     width: 44px;
     height: 44px;
+    z-index: 10;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+    background-color: var(--color-white);
   }
+
+  .music-picker-nav-btn.prev {
+    left: -8px;
+  }
+
+  .music-picker-nav-btn.next {
+    right: -8px;
+  }
+
   .music-picker-nav-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
   }
+
+  .card-track-header {
+    margin-bottom: 12px;
+  }
+
+  .cassette-art {
+    width: 165px;
+    height: 104px;
+    margin-bottom: 12px;
+  }
+
+  .song-title {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .song-artist {
+    font-size: 0.88rem;
+    margin-bottom: 10px;
+  }
+
+  .song-note {
+    font-size: 1.05rem;
+    line-height: 1.45;
+    margin-bottom: 14px;
+    padding: 0 4px;
+  }
+
+  .preview-pill-btn {
+    min-height: 44px;
+    padding: 10px 22px;
+    font-size: 0.88rem;
+  }
+
+  .picker-dots-strip {
+    gap: 8px;
+    margin: 12px 0 14px;
+  }
+
+  .picker-dot-btn {
+    width: 10px;
+    height: 10px;
+  }
+
+  .picker-dot-btn.active {
+    width: 26px;
+  }
+
+  .music-screen-footer .primary-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .music-select-container {
+    padding: 22px 8px 30px;
+  }
+
+  .music-picker-nav-btn {
+    width: 40px;
+    height: 40px;
+    top: 96px;
+  }
+
+  .music-picker-nav-btn.prev {
+    left: -4px;
+  }
+
+  .music-picker-nav-btn.next {
+    right: -4px;
+  }
+
   .music-single-card {
-    padding: 20px 14px;
-    max-width: calc(100% - 100px);
+    padding: 18px 12px 16px;
+    border-radius: 16px;
+  }
+
+  .cassette-art {
+    width: 146px;
+    height: 92px;
+  }
+
+  .cassette-reels {
+    height: 38px;
+  }
+
+  .song-title {
+    font-size: 1.05rem;
+  }
+
+  .song-note {
+    font-size: 0.98rem;
   }
 }
 

@@ -46,6 +46,14 @@ const PLAYLIST = [
     youtubeUrl: "https://www.youtube.com/watch?v=uyC8mS5MHkk",
     startSeconds: 0,
     note: "“Kabisado ko na ang bawat ngiti mo, at ikaw pa rin ang pipiliin ko sa bawat araw at sa bawat bukas.” 🌿✨"
+  },
+  {
+    title: "Bato Sa Buhangin",
+    artist: "Cinderella",
+    youtubeId: "5T2auSa7gvU",
+    youtubeUrl: "https://www.youtube.com/watch?v=5T2auSa7gvU",
+    startSeconds: 0,
+    note: "“Kapag ang puso'y natutong magmahal, bawat tibok ay may kulay at buhay… Pangakong magmahal hanggang libing, doon hihintayin itong bato sa buhangin.” 🌊🤍"
   }
 ];
 
@@ -719,6 +727,40 @@ function initMusicSystem() {
         switchSong(nextIndex, state.isPlaying);
       }
     });
+
+    // Mobile touch swipe gestures (Swipe left for Next, Swipe right for Prev)
+    let cardTouchStartX = 0;
+    let cardTouchStartY = 0;
+
+    elements.musicSingleCard.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length > 0) {
+        cardTouchStartX = e.touches[0].clientX;
+        cardTouchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    elements.musicSingleCard.addEventListener('touchend', (e) => {
+      if (!cardTouchStartX || !e.changedTouches || e.changedTouches.length === 0) return;
+      const cardTouchEndX = e.changedTouches[0].clientX;
+      const cardTouchEndY = e.changedTouches[0].clientY;
+      const diffX = cardTouchEndX - cardTouchStartX;
+      const diffY = cardTouchEndY - cardTouchStartY;
+
+      // Ensure horizontal swipe is dominant and at least 35px
+      if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
+        if (diffX < 0) {
+          // Swiped Left -> Next Track
+          const nextIndex = (state.currentSongIndex + 1) % PLAYLIST.length;
+          switchSong(nextIndex, state.isPlaying);
+        } else {
+          // Swiped Right -> Previous Track
+          const prevIndex = (state.currentSongIndex - 1 + PLAYLIST.length) % PLAYLIST.length;
+          switchSong(prevIndex, state.isPlaying);
+        }
+      }
+      cardTouchStartX = 0;
+      cardTouchStartY = 0;
+    }, { passive: true });
   }
 
   // Preview Play button on Soundtrack Picker Card
