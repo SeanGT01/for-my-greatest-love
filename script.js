@@ -771,26 +771,62 @@ function initMusicSystem() {
 }
 
 /* --------------------------------------------------------------------------
-   YouTube IFrame API Integration
+   YouTube IFrame API Integration (GitHub Pages & Localhost Compatible)
    -------------------------------------------------------------------------- */
+let ytSafetyInterval = null;
+
 function initYouTubePlayer() {
-  if (window.YT && window.YT.Player) {
+  if (state.ytPlayer) return;
+
+  // Make globally accessible for early callback hook in index.html
+  window.createYTPlayer = createYTPlayer;
+
+  if (window.YT && typeof window.YT.ready === 'function') {
+    window.YT.ready(createYTPlayer);
+  } else if (window.YT && window.YT.Player) {
     createYTPlayer();
   } else {
     // YouTube API callback
     window.onYouTubeIframeAPIReady = createYTPlayer;
   }
+
+  // Safety net interval: in case onYouTubeIframeAPIReady fired before listener was bound
+  if (!ytSafetyInterval) {
+    let attempts = 0;
+    ytSafetyInterval = setInterval(() => {
+      attempts++;
+      if (state.ytPlayer || attempts > 40) {
+        clearInterval(ytSafetyInterval);
+        ytSafetyInterval = null;
+        return;
+      }
+      if (window.YT && window.YT.Player) {
+        clearInterval(ytSafetyInterval);
+        ytSafetyInterval = null;
+        createYTPlayer();
+      }
+    }, 250);
+  }
 }
 
 function createYTPlayer() {
   if (state.ytPlayer) return;
+  if (!window.YT || !window.YT.Player) return;
+
   try {
     const currentSong = PLAYLIST[state.currentSongIndex];
+    const pageOrigin = window.location.origin && window.location.origin !== 'null'
+      ? window.location.origin
+      : window.location.protocol + '//' + window.location.host;
+
     state.ytPlayer = new YT.Player('yt-player-container', {
       height: '200',
       width: '200',
       videoId: currentSong.youtubeId,
+      host: 'https://www.youtube-nocookie.com',
       playerVars: {
+        enablejsapi: 1,
+        origin: pageOrigin,
         playsinline: 1,
         controls: 0,
         rel: 0,
@@ -799,19 +835,48 @@ function createYTPlayer() {
       },
       events: {
         'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
+        'onStateChange': onPlayerStateChange,
+        'onError': onPlayerError
       }
     });
+
+    // Ensure allow attribute is granted on iframe for autoplay permission
+    setTimeout(() => {
+      const iframe = document.getElementById('yt-player-container');
+      if (iframe && iframe.tagName === 'IFRAME') {
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      }
+    }, 100);
   } catch (err) {
     console.warn("YouTube Player initialization warning:", err);
   }
 }
 
-function onPlayerReady() {
+// Expose createYTPlayer globally early so callbacks never fail
+window.createYTPlayer = createYTPlayer;
+
+function onPlayerReady(event) {
   state.isYtReady = true;
+
+  try {
+    const iframe = document.getElementById('yt-player-container');
+    if (iframe && iframe.tagName === 'IFRAME') {
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    }
+  } catch (e) {}
+
   if (state.pendingPlay) {
     state.pendingPlay = false;
     startYouTubePlayback();
+  }
+}
+
+function onPlayerError(event) {
+  console.warn("YouTube Player error encountered:", event.data);
+  // Codes: 101/150 (embed restricted by owner), 100 (not found/private), 5 (HTML5 error), 2 (invalid id)
+  if (event.data === 101 || event.data === 150 || event.data === 100 || event.data === 5 || event.data === 2) {
+    showToast("Notice: Audio streaming restricted by provider. Starting sweet chimes… 🌷");
+    startAmbientChimes();
   }
 }
 
@@ -855,12 +920,19 @@ function updatePlayPauseIcons(isPlaying) {
 
 function startYouTubePlayback() {
   if (state.ytPlayer && state.isYtReady && typeof state.ytPlayer.playVideo === 'function') {
-    state.ytPlayer.playVideo();
-    state.isPlaying = true;
-    updatePlayPauseIcons(true);
-    document.body.classList.remove('audio-paused');
+    try {
+      state.ytPlayer.playVideo();
+      state.isPlaying = true;
+      updatePlayPauseIcons(true);
+      document.body.classList.remove('audio-paused');
+    } catch (err) {
+      console.warn("YouTube playVideo execution warning:", err);
+    }
   } else {
     state.pendingPlay = true;
+    if (!state.ytPlayer) {
+      initYouTubePlayer();
+    }
   }
 }
 
@@ -927,6 +999,11 @@ function loadSong(index, shouldPlay = false) {
           startSeconds: startAt
         });
       }
+    }
+  } else if (shouldPlay) {
+    state.pendingPlay = true;
+    if (!state.ytPlayer) {
+      initYouTubePlayer();
     }
   }
 

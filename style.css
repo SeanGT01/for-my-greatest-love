@@ -1115,11 +1115,11 @@ body.theme-dark .mini-music-player {
   flex-shrink: 0;
 }
 
-/* Hidden YouTube Player Host: Off-screen with dimensions so audio plays smoothly with NO video visible */
+/* Hidden YouTube Player Host: Placed in viewport with 200px dimensions so Chrome/Edge keep audio active on live sites (no off-screen background throttling), but 100% invisible behind wallpaper */
 .hidden-youtube-player-host {
   position: fixed !important;
-  top: -9999px !important;
-  left: -9999px !important;
+  bottom: 0 !important;
+  right: 0 !important;
   width: 200px !important;
   height: 200px !important;
   opacity: 0.001 !important;

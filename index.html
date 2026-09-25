@@ -934,16 +934,20 @@
     </div>
   </div>
 
-  <!-- Hidden HTML5 Audio Element for Background Music -->
-  <audio id="bg-audio-player" preload="auto"></audio>
-
-  <!-- Hidden Background YouTube Audio Host (Off-screen so NO video is ever shown on pages) -->
-  <div class="hidden-youtube-player-host" id="yt-player-container" aria-hidden="true"></div>
+  <!-- Hidden Background YouTube Audio Host (In viewport but invisible so browser decoders keep playing audio with NO video visible) -->
+  <div class="hidden-youtube-player-host" id="yt-player-container" aria-hidden="true" allow="autoplay; encrypted-media"></div>
 
   <!-- Sweet Toast Notifications Container -->
   <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- YouTube IFrame API for Seamless Background Soundtrack Playback -->
+  <!-- YouTube IFrame API Callback Pre-registration to eliminate race conditions on live websites -->
+  <script>
+    window.onYouTubeIframeAPIReady = function() {
+      if (typeof window.createYTPlayer === 'function') {
+        window.createYTPlayer();
+      }
+    };
+  </script>
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
 </body>
