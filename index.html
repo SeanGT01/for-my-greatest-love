@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Garden of Us 🌿 For My Favorite Person</title>
+  <meta name="description" content="A personal digital love story and interactive scrapbook written for my favorite person.">
+  
+  <!-- Favicon (Green Tulip SVG Data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌷</text></svg>">
+
+  <!-- Google Fonts: Caveat (Handwritten), Playfair Display (Romantic Serif), Plus Jakarta Sans (Modern Clean) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-light">
+  <!-- Floating Hearts & Petals Canvas/Container -->
+  <div id="ambient-particles" aria-hidden="true"></div>
+
+  <!-- Top Global Controls & Reading Progress Bar -->
+  <header id="site-header" class="site-header hidden" role="banner">
+    <div class="header-container">
+      <div class="header-brand">
+        <span class="tulip-icon">🌿</span>
+        <span class="brand-title">A Little Garden of Us</span>
+      </div>
+
+      <nav class="chapter-nav" id="chapter-nav" aria-label="Chapters">
+        <button class="nav-link active" data-target="chapter-1">01. Beginning</button>
+        <button class="nav-link" data-target="chapter-2">02. Memories</button>
+        <button class="nav-link" data-target="chapter-3">03. Our World</button>
+        <button class="nav-link" data-target="chapter-4">04. Your Letter</button>
+        <button class="nav-link" data-target="chapter-5">05. Our Garden</button>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Night Mode Toggle -->
+        <button id="theme-toggle-btn" class="icon-btn" title="Toggle Cozy Night Mode" aria-label="Toggle Cozy Night Mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <!-- Animations Toggle -->
+        <button id="motion-toggle-btn" class="icon-btn" title="Toggle Floating Particles" aria-label="Toggle Floating Particles">
+          <span class="motion-icon">✨</span>
+        </button>
+        <!-- Music Player Toggle Shortcut -->
+        <button id="mini-player-toggle-btn" class="icon-btn" title="Music Player" aria-label="Toggle Music Player">
+          <span class="music-icon">🎵</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Scroll & Chapter Progress Indicator -->
+    <div class="progress-bar-container" aria-hidden="true">
+      <div id="reading-progress-bar" class="reading-progress-bar"></div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- 1. WELCOME PAGE: THE LOCKED LOVE LETTER    -->
+  <!-- ========================================== -->
+  <section id="welcome-section" class="screen-section active-screen" aria-label="Welcome and Lock Screen">
+    <!-- Corner Green Tulip Decorations -->
+    <div class="corner-tulip corner-top-left" aria-hidden="true"></div>
+    <div class="corner-tulip corner-top-right" aria-hidden="true"></div>
+    <div class="corner-tulip corner-bottom-left" aria-hidden="true"></div>
+    <div class="corner-tulip corner-bottom-right" aria-hidden="true"></div>
+
+    <div class="welcome-card card-stationery">
+      <!-- Stamp in upper right corner -->
+      <div class="stationery-stamp" aria-hidden="true">
+        <img src="assets/stickers/postage-stamp.svg" alt="Special Edition Postage Stamp" class="stamp-img">
+      </div>
+
+      <!-- Mascot Pochacco holding letter -->
+      <div class="welcome-mascot-wrapper">
+        <img src="assets/stickers/pochacco-welcome.svg" alt="Cute puppy holding a love letter" class="mascot-img welcome-mascot bounce-gentle">
+      </div>
+
+      <!-- Emotional Welcome Messages (Prompt Specific) -->
+      <div class="welcome-text-content">
+        <p class="script-subtitle">“A little something, just for you…”</p>
+        <h1 class="welcome-title">Hi, my favorite person.</h1>
+        <p class="spontaneous-tagline">“No special occasion. No particular reason. Just you, and all the little reasons I love you.”</p>
+        <p class="welcome-description">
+          I made something special for you. Take your time, listen to your favorite song, and let me take you back to the beginning of us.
+        </p>
+      </div>
+
+      <!-- Envelope & Password Lock Mechanism -->
+      <div class="lock-wrapper">
+        <div class="envelope-lock-art" id="welcome-envelope">
+          <div class="envelope-body">
+            <div class="envelope-flap"></div>
+            <div class="envelope-pocket"></div>
+            <div class="envelope-letter-peeking">
+              <span class="peeking-heart">💌</span>
+            </div>
+            <div class="wax-seal-btn" aria-hidden="true">
+              <img src="assets/stickers/wax-seal.svg" alt="Wax Seal" class="seal-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="password-box-container">
+          <label for="code-digit-0" class="password-label">Before we begin, tell me our little secret.</label>
+          
+          <div class="digit-inputs-group" id="digit-inputs-group">
+            <input type="password" inputmode="numeric" maxlength="1" class="digit-input" id="code-digit-0" aria-label="First digit of secret code" autocomplete="off" autofocus>
+            <input type="password" inputmode="numeric" maxlength="1" class="digit-input" id="code-digit-1" aria-label="Second digit of secret code" autocomplete="off">
+            <input type="password" inputmode="numeric" maxlength="1" class="digit-input" id="code-digit-2" aria-label="Third digit of secret code" autocomplete="off">
+            <input type="password" inputmode="numeric" maxlength="1" class="digit-input" id="code-digit-3" aria-label="Fourth digit of secret code" autocomplete="off">
+          </div>
+
+          <!-- Password Feedback & Hint -->
+          <div id="password-feedback" class="password-feedback" role="alert" aria-live="polite"></div>
+          
+          <div class="hint-container">
+            <button type="button" id="hint-toggle-btn" class="hint-toggle-btn">Need a little hint? 🌿</button>
+            <p id="hint-text" class="hint-text hidden">Hint: Try 1234 (our secret key)</p>
+          </div>
+
+          <button type="button" id="unlock-submit-btn" class="primary-btn unlock-btn">
+            <span>Open Our Story</span>
+            <span class="btn-arrow">✨</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 2. MUSIC SELECTION SCREEN (Post-Unlock)    -->
+  <!-- ========================================== -->
+  <section id="music-select-section" class="screen-section hidden" aria-label="Choose Your Background Song">
+    <div class="container music-select-container">
+      <div class="section-badge">
+        <span class="badge-dot"></span>
+        <span>A Melodic Companion</span>
+      </div>
+      <h2 class="music-screen-title">Choose Our Soundtrack</h2>
+      <p class="music-screen-desc">
+        Pick a song to play in the background as you read through our story. You can switch tracks or pause anytime you like.
+      </p>
+
+      <div class="music-picker-carousel-wrap">
+        <!-- Previous Song Button -->
+        <button type="button" id="picker-prev-song-btn" class="music-picker-nav-btn prev" aria-label="Previous Track" title="Previous Track">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+
+        <!-- The Single Music Card with YouTube Soundtrack Preview -->
+        <div class="music-single-card selected" id="music-single-card" tabindex="0" role="region" aria-label="Music Soundtrack Preview">
+          <div class="card-track-header">
+            <span class="card-track-tag" id="picker-track-tag">SIDE A</span>
+            <span class="card-track-counter" id="picker-track-counter">1 of 3</span>
+          </div>
+
+          <!-- Romantic Retro Mixtape Cassette (Pure Audio - Zero Video Shown) -->
+          <div class="cassette-art" id="picker-cassette-art" aria-hidden="true">
+            <div class="cassette-label">
+              <span id="cassette-label-track">SIDE A</span>
+              <span class="cassette-heart">💚</span>
+              <span>FOR MY LOVE</span>
+            </div>
+            <div class="cassette-reels">
+              <div class="reel reel-left"></div>
+              <div class="reel-window">
+                <span class="reel-tape"></span>
+              </div>
+              <div class="reel reel-right"></div>
+            </div>
+          </div>
+
+          <!-- Listen to Preview Button -->
+          <button type="button" id="picker-preview-play-btn" class="preview-pill-btn" title="Listen to Preview" aria-label="Listen to Preview">
+            <span class="preview-pill-icon" id="preview-pill-icon">▶</span>
+            <span id="preview-pill-text">Listen to Preview</span>
+          </button>
+
+          <!-- Music Info & Romantic Note -->
+          <div class="music-card-info">
+            <h3 class="song-title" id="picker-song-title">How Deep Is Your Love</h3>
+            <p class="song-artist" id="picker-song-artist">Bee Gees • Full Soundtrack</p>
+            <p class="song-note" id="picker-song-note">“How deep is your love, I really mean to learn… ‘cause we’re living in a world of fools breaking us down, when they all should let us be…” 🤍</p>
+          </div>
+
+          <!-- Track Indicators / Dots -->
+          <div class="picker-dots-strip" id="picker-dots-strip" role="tablist" aria-label="Playlist tracks">
+            <button type="button" class="picker-dot-btn active" data-index="0" aria-label="Track 1" aria-selected="true"></button>
+            <button type="button" class="picker-dot-btn" data-index="1" aria-label="Track 2" aria-selected="false"></button>
+            <button type="button" class="picker-dot-btn" data-index="2" aria-label="Track 3" aria-selected="false"></button>
+          </div>
+
+          <!-- Selected Badge -->
+          <div class="music-card-badge">
+            <span class="selected-tulip">🌷 Selected for Our Story</span>
+          </div>
+        </div>
+
+        <!-- Next Song Button -->
+        <button type="button" id="picker-next-song-btn" class="music-picker-nav-btn next" aria-label="Next Track" title="Next Track">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+
+      <div class="music-screen-footer">
+        <button type="button" id="start-story-btn" class="primary-btn pulse-button">
+          <span>Step Into Our Story</span>
+          <span class="btn-arrow">📖</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- PERSISTENT MINI MUSIC PLAYER DOCK          -->
+  <!-- ========================================== -->
+  <aside id="mini-music-player" class="mini-music-player hidden" aria-label="Music Soundtrack Controls">
+    <div class="mini-player-header">
+      <!-- Mascot / Audio status -->
+      <div class="mini-player-artwork" id="player-art-toggle" title="Playing Soundtrack">
+        <img src="assets/stickers/pochacco-headphones.svg" alt="Pochacco listening to music" class="mini-mascot-img">
+        <div class="sound-wave-bars" id="sound-wave-bars" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- Track Information -->
+      <div class="mini-player-info">
+        <div class="track-title-scroll">
+          <span id="player-track-name" class="track-title">How Deep Is Your Love</span>
+        </div>
+        <span id="player-track-artist" class="track-artist">Bee Gees • Full Song</span>
+      </div>
+
+      <!-- Quick Controls -->
+      <div class="mini-player-quick-controls">
+        <button id="player-prev-btn" class="ctrl-btn" title="Previous Song" aria-label="Previous Song">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button id="player-play-btn" class="ctrl-btn play-main-btn" title="Play or Pause" aria-label="Play or Pause">
+          <svg id="play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="pause-icon" class="hidden" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button id="player-next-btn" class="ctrl-btn" title="Next Song" aria-label="Next Song">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+        <button id="player-ambient-btn" class="ctrl-btn ambient-btn" title="Toggle Soft Ambient Chimes" aria-label="Toggle Soft Ambient Chimes">
+          <span id="ambient-icon">✨</span>
+        </button>
+        <button id="player-minimize-btn" class="ctrl-btn minimize-btn" title="Minimize Dock" aria-label="Minimize Dock">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- MAIN STORY SECTIONS CONTAINER              -->
+  <!-- ========================================== -->
+  <main id="story-container" class="story-container hidden">
+
+    <!-- Configurable Days Counter Widget (Optional Banner) -->
+    <div id="days-counter-widget" class="days-counter-widget hidden" role="status">
+      <div class="days-counter-inner">
+        <span class="days-heart">🌿</span>
+        <span id="days-counter-text" class="days-text">Every day with you is my favorite day.</span>
+        <span class="days-heart">💚</span>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 1: THE BEGINNING OF US             -->
+    <!-- ========================================== -->
+    <section id="chapter-1" class="story-chapter" data-chapter="1" aria-labelledby="ch1-heading">
+      <div class="chapter-header">
+        <div class="chapter-tag">
+          <img src="assets/stickers/green-tulip.svg" alt="" class="tag-tulip">
+          <span>CHAPTER 01</span>
+        </div>
+        <h2 id="ch1-heading" class="chapter-title">The Beginning of Us</h2>
+        <p class="chapter-quote">“Funny how someone on the other side of a screen could slowly become someone so close to my heart.”</p>
+      </div>
+
+      <div class="timeline-container">
+        <!-- Floating stickers -->
+        <div class="decorative-sticker sticker-ch1-gamepad" aria-hidden="true">
+          <img src="assets/stickers/game-controller.svg" alt="" class="sticker-img">
+        </div>
+        <div class="decorative-sticker sticker-ch1-pochacco" aria-hidden="true">
+          <img src="assets/stickers/pochacco-gaming.svg" alt="" class="sticker-img">
+        </div>
+
+        <!-- Timeline Step A: The First Meeting -->
+        <article class="timeline-card paper-texture card-left" id="story-step-a">
+          <div class="tape-strip" aria-hidden="true"></div>
+
+          <h3 class="step-title">The First Meeting</h3>
+          
+          <div class="timeline-photo-card" data-part="a" id="timeline-gallery-a">
+            <div class="timeline-photo-frame" tabindex="0" role="button" aria-label="View photo fullscreen in lightbox" title="Click to view fullscreen">
+              <img src="assets/photos/ch1-bloxfruits.png" alt="The First Meeting" class="timeline-photo-img" loading="lazy">
+              <span class="gallery-counter-pill">1 / 2</span>
+              <button type="button" class="gallery-frame-nav prev" aria-label="Previous photo" title="Previous photo">‹</button>
+              <button type="button" class="gallery-frame-nav next" aria-label="Next photo" title="Next photo">›</button>
+              <span class="gallery-zoom-hint" aria-hidden="true">🔍 Click to expand</span>
+            </div>
+            <span class="timeline-photo-caption">“Level 1: When our worlds crossed”</span>
+            <div class="timeline-thumbnails-strip" role="tablist" aria-label="Part A photos">
+              <button type="button" class="gallery-thumb-btn active" data-index="0" role="tab" aria-selected="true" aria-label="Photo 1: The First Meeting" title="The First Meeting">
+                <img src="assets/photos/ch1-bloxfruits.png" alt="Blox Fruits Meeting" class="gallery-thumb-img">
+              </button>
+              <button type="button" class="gallery-thumb-btn" data-index="1" role="tab" aria-selected="false" aria-label="Photo 2: Roblox Arena" title="Roblox Arena">
+                <img src="assets/photos/ch1-roblox-arena.png" alt="Roblox Arena" class="gallery-thumb-img contain-thumb">
+              </button>
+            </div>
+          </div>
+
+          <div class="step-content">
+            <div class="editable-text" id="text-ch1-meeting">
+              <p>I already knew of you before all of this started, but we never really had the chance to talk or get to know each other.</p>
+              <p>Then somehow, a simple game brought us closer. We started talking more, getting to know each other little by little, and everything just happened naturally from there. There was something about talking to you that felt easy and comfortable, and I genuinely enjoyed every conversation and moment we shared.</p>
+              <p>Looking back now, it’s kind of crazy how something as simple and random as playing a game became the start of everything we have today.</p>
+              <p>And I’m really glad it happened. ❤️</p>
+            </div>
+          </div>
+          <div class="memory-doodle">
+            <span class="doodle-icon">🎮</span>
+            <span class="doodle-note">“Level 1: When our worlds crossed”</span>
+          </div>
+        </article>
+
+        <!-- Timeline Step B: The Random Conversations -->
+        <article class="timeline-card paper-texture card-right" id="story-step-b">
+          <div class="tape-strip" aria-hidden="true"></div>
+
+          <h3 class="step-title">The Random Conversations</h3>
+          
+          <div class="timeline-photo-card" data-part="b" id="timeline-gallery-b">
+            <div class="timeline-photo-frame" tabindex="0" role="button" aria-label="View photo fullscreen in lightbox" title="Click to view fullscreen">
+              <img src="assets/photos/ch1-minecraft-night.png" alt="The Random Conversations" class="timeline-photo-img" loading="lazy">
+              <span class="gallery-counter-pill">1 / 2</span>
+              <button type="button" class="gallery-frame-nav prev" aria-label="Previous photo" title="Previous photo">‹</button>
+              <button type="button" class="gallery-frame-nav next" aria-label="Next photo" title="Next photo">›</button>
+              <span class="gallery-zoom-hint" aria-hidden="true">🔍 Click to expand</span>
+            </div>
+            <span class="timeline-photo-caption">“Just 5 more minutes… turned into 3 AM”</span>
+            <div class="timeline-thumbnails-strip" role="tablist" aria-label="Part B photos">
+              <button type="button" class="gallery-thumb-btn active" data-index="0" role="tab" aria-selected="true" aria-label="Photo 1: Minecraft Night" title="Minecraft Night">
+                <img src="assets/photos/ch1-minecraft-night.png" alt="Minecraft Night" class="gallery-thumb-img">
+              </button>
+              <button type="button" class="gallery-thumb-btn" data-index="1" role="tab" aria-selected="false" aria-label="Photo 2: On The Statue" title="On The Statue">
+                <img src="assets/photos/ch1-minecraft-statue.png" alt="Minecraft Statue" class="gallery-thumb-img">
+              </button>
+            </div>
+          </div>
+
+          <div class="step-content">
+            <p class="editable-text" id="text-ch1-conversations">
+              Before I realized it, talking to you became my favorite part of any day. The silly inside jokes, the late-night discord calls where neither of us wanted to say goodnight, and the random stories about our days. Everything felt so easy with you. I found myself checking my phone just to see if your name popped up on my screen.
+            </p>
+          </div>
+          <div class="memory-doodle">
+            <span class="doodle-icon">💬</span>
+            <span class="doodle-note">“Just 5 more minutes… turned into 3 AM”</span>
+          </div>
+        </article>
+
+        <!-- Timeline Step C: The Feelings I Kept Quiet -->
+        <article class="timeline-card paper-texture card-left" id="story-step-c">
+          <div class="tape-strip" aria-hidden="true"></div>
+
+          <h3 class="step-title">The Feelings I Kept Quiet</h3>
+          
+          <div class="timeline-photo-card" data-part="c" id="timeline-gallery-c">
+            <div class="timeline-photo-frame" tabindex="0" role="button" aria-label="View photo fullscreen in lightbox" title="Click to view fullscreen">
+              <img src="assets/photos/ch1-minecraft-sunset.png" alt="The Feelings I Kept Quiet" class="timeline-photo-img" loading="lazy">
+              <span class="gallery-counter-pill hidden">1 / 1</span>
+              <button type="button" class="gallery-frame-nav prev hidden" aria-label="Previous photo">‹</button>
+              <button type="button" class="gallery-frame-nav next hidden" aria-label="Next photo">›</button>
+              <span class="gallery-zoom-hint" aria-hidden="true">🔍 Click to expand</span>
+            </div>
+            <span class="timeline-photo-caption">“Quiet thoughts I couldn't say out loud yet”</span>
+            <div class="timeline-thumbnails-strip hidden" role="tablist" aria-label="Part C photos"></div>
+          </div>
+
+          <div class="step-content">
+            <p class="editable-text" id="text-ch1-feelings">
+              I didn't plan on falling for you. It wasn't one single dramatic moment, but a hundred quiet ones. The way you laughed when something caught you off guard, the gentle way you listened, and how comfortable silence felt between us. My heart started beating a little faster whenever you joined the call, and I kept asking myself if you felt it too.
+            </p>
+          </div>
+          <div class="memory-doodle">
+            <span class="doodle-icon">🌱</span>
+            <span class="doodle-note">“Quiet thoughts I couldn't say out loud yet”</span>
+          </div>
+        </article>
+
+        <!-- Timeline Step D: When You Became My Favorite Person -->
+        <article class="timeline-card paper-texture card-right" id="story-step-d">
+          <div class="tape-strip" aria-hidden="true"></div>
+
+          <h3 class="step-title">When You Became My Favorite Person</h3>
+          
+          <div class="timeline-photo-card" data-part="d" id="timeline-gallery-d">
+            <div class="timeline-photo-frame" tabindex="0" role="button" aria-label="View photo fullscreen in lightbox" title="Click to view fullscreen">
+              <img src="assets/photos/ch1-stardew-cabin.png" alt="When You Became My Favorite Person" class="timeline-photo-img" loading="lazy">
+              <span class="gallery-counter-pill">1 / 5</span>
+              <button type="button" class="gallery-frame-nav prev" aria-label="Previous photo" title="Previous photo">‹</button>
+              <button type="button" class="gallery-frame-nav next" aria-label="Next photo" title="Next photo">›</button>
+              <span class="gallery-zoom-hint" aria-hidden="true">🔍 Click to expand</span>
+            </div>
+            <span class="timeline-photo-caption">“Our cozy Stardew home where we built memories together”</span>
+
+            <!-- Thumbnail Selector Strip: Click any photo to display it as the main big photo -->
+            <div class="timeline-thumbnails-strip" role="tablist" aria-label="Part D photos">
+              <button type="button" class="gallery-thumb-btn active" data-index="0" role="tab" aria-selected="true" aria-label="Photo 1: Our Stardew Cabin" title="Our Stardew Cabin">
+                <img src="assets/photos/ch1-stardew-cabin.png" alt="Stardew Cabin" class="gallery-thumb-img">
+              </button>
+              <button type="button" class="gallery-thumb-btn" data-index="1" role="tab" aria-selected="false" aria-label="Photo 2: Holding seeds together" title="Holding seeds together">
+                <img src="assets/photos/ch1-stardew-seeds.png" alt="Stardew Seeds Duo" class="gallery-thumb-img pixelated-thumb">
+              </button>
+              <button type="button" class="gallery-thumb-btn" data-index="2" role="tab" aria-selected="false" aria-label="Photo 3: Matching dino hats" title="Matching dino hats">
+                <img src="assets/photos/ch1-stardew-dino.png" alt="Matching Dino Hats" class="gallery-thumb-img pixelated-thumb">
+              </button>
+              <button type="button" class="gallery-thumb-btn" data-index="3" role="tab" aria-selected="false" aria-label="Photo 4: Our Stardew Wedding" title="Our Stardew Wedding">
+                <img src="assets/photos/ch1-stardew-wedding.png" alt="Our Stardew Wedding" class="gallery-thumb-img pixelated-thumb">
+              </button>
+              <button type="button" class="gallery-thumb-btn" data-index="4" role="tab" aria-selected="false" aria-label="Photo 5: Late Night at 2 AM" title="Late Night at 2 AM">
+                <img src="assets/photos/ch1-stardew-night.png" alt="Late Night at 2 AM" class="gallery-thumb-img pixelated-thumb">
+              </button>
+            </div>
+          </div>
+
+          <div class="step-content">
+            <p class="editable-text" id="text-ch1-favorite">
+              There came a day when I realized you weren't just a gaming buddy or a friend on the other side of a screen. You had become my safe harbor, my favorite notification, and the person I wanted to celebrate every little victory with. You became the one I wanted by my side, in games and in life.
+            </p>
+          </div>
+          <div class="memory-doodle">
+            <span class="doodle-icon">✨</span>
+            <span class="doodle-note">“My favorite person in the entire world”</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Interactive Chapter Confession Button -->
+      <div class="chapter-action-box">
+        <button type="button" id="ch1-confession-btn" class="scrapbook-action-btn">
+          <span class="btn-icon">💌</span>
+          <span>Read what I never told you…</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 2: LITTLE MOMENTS, BIG FEELINGS    -->
+    <!-- ========================================== -->
+    <section id="chapter-2" class="story-chapter" data-chapter="2" aria-labelledby="ch2-heading">
+      <div class="chapter-header">
+        <div class="chapter-tag">
+          <img src="assets/stickers/green-tulip.svg" alt="" class="tag-tulip">
+          <span>CHAPTER 02</span>
+        </div>
+        <h2 id="ch2-heading" class="chapter-title">Little Moments, Big Feelings</h2>
+        <p class="chapter-quote">“Some of my favorite memories are the ones where I get to be with you.”</p>
+        <div class="memory-count-badge" id="memory-counter-badge">
+          <span>📸 <span id="memory-counter-num">6</span> Precious Memories in Our Scrapbook</span>
+        </div>
+      </div>
+
+      <!-- Scrapbook Photo Grid (Polaroids) -->
+      <div class="scrapbook-gallery-wrap">
+        <!-- Floating Pochacco Photographer -->
+        <div class="decorative-sticker sticker-ch2-camera" aria-hidden="true">
+          <img src="assets/stickers/pochacco-camera.svg" alt="" class="sticker-img">
+        </div>
+
+        <!-- Sticky Note 1 -->
+        <div class="sticky-note-callout note-tilt-left">
+          <p class="sticky-text">“I wish I could keep every little moment with you in a bottle.” 🌿</p>
+        </div>
+
+        <div class="polaroid-grid" id="polaroid-grid">
+          <!-- Dynamically populated from script.js photo array -->
+        </div>
+
+        <!-- Sticky Note 2 -->
+        <div class="sticky-note-callout note-tilt-right">
+          <p class="sticky-text">“Somehow, ordinary days become my favorite days when you’re there.” 💚</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 3: OUR LITTLE WORLD                -->
+    <!-- ========================================== -->
+    <section id="chapter-3" class="story-chapter" data-chapter="3" aria-labelledby="ch3-heading">
+      <div class="chapter-header">
+        <div class="chapter-tag">
+          <img src="assets/stickers/green-tulip.svg" alt="" class="tag-tulip">
+          <span>CHAPTER 03</span>
+        </div>
+        <h2 id="ch3-heading" class="chapter-title">My Favorite Place Is With You</h2>
+        <p class="chapter-quote">“Our little world, the silly laughter, and all the quiet moments in between.”</p>
+      </div>
+
+      <!-- 4 Interactive Feature Cards -->
+      <div class="interactive-cards-grid">
+        <!-- Card 1: Things I Love About You -->
+        <div class="interactive-card paper-texture" id="card-things-love" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="card-icon-badge">💌</div>
+          <h3 class="card-title">Things I Love About You</h3>
+          <p class="card-snippet">A little collection of all the reasons why my heart chooses you every single day.</p>
+          <div class="card-tap-hint">Tap to open letter →</div>
+        </div>
+
+        <!-- Card 2: My Favorite Memory -->
+        <div class="interactive-card paper-texture" id="card-favorite-memory" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="card-icon-badge">✨</div>
+          <h3 class="card-title">My Favorite Memory</h3>
+          <p class="card-snippet">A special moment I replay in my mind whenever I miss you most.</p>
+          <div class="card-tap-hint">Tap to relive it →</div>
+        </div>
+
+        <!-- Card 3: Things I Want to Do With You (Bucket List) -->
+        <div class="interactive-card paper-texture" id="card-bucket-list" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="card-icon-badge">🌿</div>
+          <h3 class="card-title">Things I Want to Do With You</h3>
+          <p class="card-snippet">Our little bucket list of dreams, trips, and cozy dates waiting for us.</p>
+          <div class="card-tap-hint">Open our wish list →</div>
+        </div>
+
+        <!-- Card 4: A Letter for Your Hard Days -->
+        <div class="interactive-card paper-texture" id="card-hard-days" tabindex="0" role="button" aria-haspopup="dialog">
+          <div class="card-icon-badge">🍵</div>
+          <h3 class="card-title">A Letter for Your Hard Days</h3>
+          <p class="card-snippet">For the days when you feel tired, overwhelmed, or sad. Read this anytime.</p>
+          <div class="card-tap-hint">Tap for comfort →</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 4: A LETTER FOR YOU                -->
+    <!-- ========================================== -->
+    <section id="chapter-4" class="story-chapter letter-chapter-wrap" data-chapter="4" aria-labelledby="ch4-heading">
+      <div class="chapter-header">
+        <div class="chapter-tag">
+          <img src="assets/stickers/green-tulip.svg" alt="" class="tag-tulip">
+          <span>CHAPTER 04</span>
+        </div>
+        <h2 id="ch4-heading" class="chapter-title">One Last Letter (For Now)</h2>
+        <p class="chapter-quote">“Because you deserve to know you are cherished on ordinary days, not just special ones.”</p>
+      </div>
+
+      <!-- Sealed Envelope / Letter Reveal Component -->
+      <div class="letter-showcase-container" id="letter-showcase">
+        <!-- Sealed State Envelope View -->
+        <div class="sealed-envelope-card" id="sealed-envelope-card">
+          <div class="envelope-ribbon-decor" aria-hidden="true"></div>
+          <div class="envelope-tulips-decor" aria-hidden="true">
+            <img src="assets/stickers/green-tulip.svg" alt="" class="decor-tulip-left">
+            <img src="assets/stickers/green-tulip.svg" alt="" class="decor-tulip-right">
+          </div>
+
+          <div class="wax-seal-interactive" id="open-letter-seal-btn" role="button" tabindex="0" aria-label="Open your love letter">
+            <img src="assets/stickers/wax-seal.svg" alt="Wax Seal" class="wax-seal-art pulsate-soft">
+            <span class="seal-tap-label">Click to break seal & open letter</span>
+          </div>
+
+          <p class="envelope-to-label">To my favorite person,</p>
+        </div>
+
+        <!-- Unfolded Letter Parchment (Revealed upon clicking envelope) -->
+        <article class="unfolded-parchment-letter hidden" id="unfolded-letter">
+          <div class="parchment-header">
+            <div class="parchment-stamp">
+              <img src="assets/stickers/postage-stamp.svg" alt="Stamp" class="stamp-mini">
+            </div>
+            <h3 class="parchment-salutation">To my Baby,</h3>
+          </div>
+
+          <div class="parchment-body">
+            <p>
+              I don't think you realize just how much you've come to mean to me. Somewhere along the way, you became more than just someone I love talking to—you became someone who makes my days feel lighter, my smiles a little more genuine, and my life a lot more beautiful just by being in it.
+            </p>
+            <p>
+              There's something about you that makes even the simplest moments feel special. Whether we're laughing about something stupid, talking about our day, or simply spending time together, I find myself wishing those moments could last a little longer. Being with you has become one of my favorite feelings.
+            </p>
+            <p>
+              Before I even realized it, you became someone I looked forward to talking to every day. Someone I wanted to tell about the little things that happened, someone I wanted to spend my time with, and someone who somehow made even the most ordinary days feel a little more special.
+            </p>
+            <p>
+              And I know things between us haven't always been perfect. We've had our rough moments, misunderstandings, and times when things weren't easy. But even through those moments, you still tried to understand me, stayed patient with me, and found it in your heart to forgive me when I made mistakes. I know that isn't always easy, and I want you to know how much I appreciate it. It means more to me than I probably say enough.
+            </p>
+            <p>
+              Looking back at all the memories we've made, I realized that what makes them so special isn't really where we went or what we did. It's the fact that I got to experience all of those moments with you.
+            </p>
+            <p>
+              Thank you for coming into my life and becoming such a special part of it. Thank you for every conversation, every laugh, every random moment, every time you understood me, and even the smallest memories that probably didn't seem important at the time but ended up meaning so much to me.
+            </p>
+            <p>
+              I don't know exactly what the future has waiting for us, but I do know that I'm really grateful that our paths crossed and that our story started the way it did.
+            </p>
+            <p>
+              I made this little website for you not because today has to be some big or special occasion, but because sometimes I feel like words alone aren't enough to show you how much you truly mean to me.
+            </p>
+            <p>
+              I love you so much, baby. Please always take care of yourself, especially during the times when I can't be there beside you. And whenever life feels heavy, whenever you're tired, scared, sad, or you simply feel like the world is too much, please remember that you never have to face everything alone. I'm here. I'll listen to you, comfort you, support you, and stay by your side through the good days and the difficult ones.
+            </p>
+            <p>
+              Thank you for loving me even when I'm not the easiest person to love. Thank you for understanding me, forgiving me, and still choosing to stay through the moments when things between us weren't perfect. I may not always have the right words, and I may make mistakes along the way, but please never doubt how much I love and care about you.
+            </p>
+            <p>
+              And sometimes I think about how different life could have been if even one small thing had happened differently. Maybe we would have never met, never had that first conversation, and never made all the memories we have now. That thought makes me even more grateful that somehow, in this life, I found you.
+            </p>
+            <p>
+              And if there really are countless universes out there—countless versions of us living completely different lives—I hope that somehow, in every single one of them, I still find my way to you. No matter where we are, who we become, or how differently our stories begin, I hope my heart still recognizes yours.
+            </p>
+            <p>
+              Because if I were given a thousand lives, a thousand different beginnings, and a thousand chances to love someone all over again, I would still wish for the same person.
+            </p>
+            <p class="letter-emphasis">
+              I would still wish for you.
+            </p>
+            <p>
+              In this universe, in another, and in every life after this one—I hope it will always be you.
+            </p>
+            <p>
+              I love you, baby. More than these words could ever fully explain. Please take care of yourself, always. And whenever you need someone, remember that I'm here for you. Always. ❤️
+            </p>
+          </div>
+
+          <div class="parchment-signoff">
+            <p class="signoff-closing">With all my love,</p>
+            <p class="signoff-signature">Your favorite person. 🌿</p>
+          </div>
+
+          <div class="parchment-footer-transition">
+            <p class="story-continuation-prompt">“There’s still so much of our story left to write.”</p>
+            <button type="button" id="continue-to-garden-btn" class="primary-btn garden-transition-btn">
+              <span>Continue our story</span>
+              <span class="btn-arrow">🌷</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- FINAL PAGE: A LITTLE GARDEN OF US          -->
+    <!-- ========================================== -->
+    <section id="chapter-5" class="story-chapter final-garden-section" data-chapter="5" aria-labelledby="ch5-heading">
+      <div class="chapter-header">
+        <div class="chapter-tag">
+          <img src="assets/stickers/green-tulip.svg" alt="" class="tag-tulip">
+          <span>FINAL CHAPTER</span>
+        </div>
+        <h2 id="ch5-heading" class="chapter-title">A Little Garden of Us</h2>
+        <p class="garden-main-statement">“If I could choose again, I’d still want to meet you.”</p>
+        <p class="garden-sub-statement">“Thank you for being my favorite part of this story.”</p>
+      </div>
+
+      <!-- Interactive Garden Canvas Area -->
+      <div class="virtual-garden-card paper-texture">
+        <div class="garden-sky">
+          <div class="garden-sun-warmth"></div>
+          <div class="garden-stats-pill">
+            <span class="stat-icon">🌷</span>
+            <span id="garden-count-label">Our garden has 0 tulips planted with love.</span>
+          </div>
+        </div>
+
+        <!-- The Tulips Flowerbed Container -->
+        <div class="flowerbed-container" id="flowerbed-container" aria-label="Virtual green tulip garden">
+          <!-- Tulips are added here dynamically by JavaScript -->
+        </div>
+
+        <div class="garden-mascot-center">
+          <img src="assets/stickers/pochacco-tulips.svg" alt="Pochacco holding a fresh green tulip" class="garden-pochacco-img bounce-gentle">
+        </div>
+
+        <div class="garden-quick-actions">
+          <button type="button" id="plant-tulip-btn" class="garden-action-btn primary-garden-btn">
+            <span>🌱 Plant a Tulip</span>
+          </button>
+          <button type="button" id="reset-garden-btn" class="garden-action-btn-small" title="Tidy our garden">
+            <span>Tidy garden</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- The 6 Interactive Final Page Buttons -->
+      <div class="final-interactive-dashboard">
+        <!-- BUTTON A: Read everything again -->
+        <button type="button" id="btn-read-again" class="dashboard-interactive-btn">
+          <span class="dash-icon">🔄</span>
+          <div class="dash-text">
+            <strong class="dash-title">Read everything again</strong>
+            <span class="dash-desc">Take a stroll back to our beginning</span>
+          </div>
+        </button>
+
+        <!-- BUTTON B: Send me a little heart -->
+        <button type="button" id="btn-send-heart" class="dashboard-interactive-btn">
+          <span class="dash-icon">💚</span>
+          <div class="dash-text">
+            <strong class="dash-title">Send me a little heart</strong>
+            <span class="dash-desc">Shower the screen with sweet love</span>
+          </div>
+        </button>
+
+        <!-- BUTTON C: One more surprise -->
+        <button type="button" id="btn-more-surprise" class="dashboard-interactive-btn">
+          <span class="dash-icon">✨</span>
+          <div class="dash-text">
+            <strong class="dash-title">One more surprise</strong>
+            <span class="dash-desc">Draw a cute randomized love note</span>
+          </div>
+        </button>
+
+        <!-- BUTTON D: Open a random memory -->
+        <button type="button" id="btn-random-memory" class="dashboard-interactive-btn">
+          <span class="dash-icon">📸</span>
+          <div class="dash-text">
+            <strong class="dash-title">Open a random memory</strong>
+            <span class="dash-desc">Revisit a sweet moment from our story</span>
+          </div>
+        </button>
+
+        <!-- BUTTON E: A question for you -->
+        <button type="button" id="btn-question-you" class="dashboard-interactive-btn feature-highlight-btn">
+          <span class="dash-icon">💌</span>
+          <div class="dash-text">
+            <strong class="dash-title">A question for you…</strong>
+            <span class="dash-desc">A little promise for tomorrow</span>
+          </div>
+        </button>
+      </div>
+
+      <footer class="site-footer">
+      </footer>
+    </section>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FLOATING MASCOT & CORNER EASTER EGGS       -->
+  <!-- ========================================== -->
+  <div id="floating-mascot-widget" class="floating-mascot-widget hidden" aria-label="Pochacco Mascot">
+    <div id="mascot-speech-bubble" class="mascot-speech-bubble hidden" role="tooltip">
+      <span id="mascot-speech-text">Hi my favorite person! 🐾</span>
+    </div>
+    <button type="button" id="mascot-toggle-btn" class="mascot-btn" aria-label="Tap Pochacco">
+      <img src="assets/stickers/pochacco-welcome.svg" alt="Pochacco puppy" id="floating-mascot-img" class="mascot-floating-icon">
+    </button>
+  </div>
+
+  <!-- Secret Note Quick Floating Trigger -->
+  <button type="button" id="secret-note-btn" class="secret-note-float-btn hidden" title="A Secret Note For You">
+    <span class="secret-icon">🌿</span>
+    <span class="secret-label">Secret Note</span>
+  </button>
+
+  <!-- Back to Top Button -->
+  <button type="button" id="back-to-top-btn" class="back-to-top-btn hidden" aria-label="Back to Top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+  </button>
+
+  <!-- ========================================== -->
+  <!-- MODALS (LIGHTBOX, LETTERS, BUCKET LIST)    -->
+  <!-- ========================================== -->
+
+  <!-- 1. FULLSCREEN PHOTO LIGHTBOX MODAL -->
+  <div id="lightbox-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div class="modal-overlay-close" data-close-modal></div>
+    <div class="lightbox-dialog paper-texture">
+      <button type="button" class="modal-close-btn" data-close-modal aria-label="Close photo viewer">&times;</button>
+      
+      <div class="lightbox-grid">
+        <div class="lightbox-photo-pane">
+          <img id="lightbox-img" src="" alt="Memory Photo" class="lightbox-image">
+          <button type="button" class="gallery-frame-nav prev lightbox-pane-nav hidden" id="lightbox-pane-prev" aria-label="Previous photo in this memory" title="Previous photo">‹</button>
+          <button type="button" class="gallery-frame-nav next lightbox-pane-nav hidden" id="lightbox-pane-next" aria-label="Next photo in this memory" title="Next photo">›</button>
+          <span class="gallery-counter-pill lightbox-pane-pill hidden" id="lightbox-pane-pill">1 / 3</span>
+          <div class="lightbox-dots-strip hidden" id="lightbox-dots-strip"></div>
+          <div class="lightbox-photo-decor">
+            <span class="pin-decor">📌</span>
+          </div>
+        </div>
+
+        <div class="lightbox-details-pane">
+          <span id="lightbox-date" class="lightbox-date-badge">Our Memory</span>
+          <h3 id="lightbox-title" class="lightbox-title">Memory Title</h3>
+          <blockquote id="lightbox-quote" class="lightbox-quote">“Personal quote here”</blockquote>
+          <div class="lightbox-story-wrap">
+            <p id="lightbox-story" class="lightbox-story">Extended story description.</p>
+          </div>
+
+          <div class="lightbox-nav-buttons">
+            <button type="button" id="lightbox-prev-btn" class="lightbox-nav-btn" aria-label="Previous memory">
+              ← Previous
+            </button>
+            <span id="lightbox-counter" class="lightbox-counter">1 of 6</span>
+            <button type="button" id="lightbox-next-btn" class="lightbox-nav-btn" aria-label="Next memory">
+              Next →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. HANDWRITTEN LETTER MODAL (Generic / Confession / Hard Days) -->
+  <div id="letter-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="letter-modal-title">
+    <div class="modal-overlay-close" data-close-modal></div>
+    <div class="letter-modal-card card-stationery paper-texture">
+      <button type="button" class="modal-close-btn" data-close-modal aria-label="Close letter">&times;</button>
+      
+      <div class="letter-modal-header">
+        <div class="letter-modal-stamp">
+          <img src="assets/stickers/postage-stamp.svg" alt="" class="stamp-mini">
+        </div>
+        <span id="letter-modal-badge" class="letter-badge">Personal Letter</span>
+        <h3 id="letter-modal-title" class="letter-modal-title">Letter Title</h3>
+      </div>
+
+      <div class="letter-modal-body" id="letter-modal-body">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="letter-modal-footer">
+        <button type="button" class="primary-btn modal-action-close" data-close-modal>
+          <span>Keep in my heart 💚</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. INTERACTIVE BUCKET LIST MODAL -->
+  <div id="bucket-list-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="bucket-modal-title">
+    <div class="modal-overlay-close" data-close-modal></div>
+    <div class="bucket-modal-card card-stationery paper-texture">
+      <button type="button" class="modal-close-btn" data-close-modal aria-label="Close bucket list">&times;</button>
+      
+      <div class="bucket-modal-header">
+        <span class="letter-badge">Our Dreams &amp; Dates</span>
+        <h3 id="bucket-modal-title" class="bucket-title">Things I Want to Do With You 🌿</h3>
+        <p class="bucket-subtitle">Check them off as we make these memories together!</p>
+        
+        <!-- Progress bar of completed bucket list -->
+        <div class="bucket-progress-wrap">
+          <div class="bucket-progress-bar">
+            <div id="bucket-progress-fill" class="bucket-progress-fill"></div>
+          </div>
+          <span id="bucket-progress-label" class="bucket-progress-label">0 of 6 dreams completed</span>
+        </div>
+      </div>
+
+      <div class="bucket-items-list" id="bucket-items-list">
+        <!-- Rendered dynamically by script.js with localStorage sync -->
+      </div>
+
+      <div class="bucket-add-row">
+        <input type="text" id="new-bucket-input" class="bucket-input" placeholder="Add a new dream to our list..." aria-label="New wish or bucket list item">
+        <button type="button" id="add-bucket-btn" class="bucket-add-btn">Add Wish ✨</button>
+      </div>
+
+      <div class="bucket-modal-footer">
+        <button type="button" id="reset-bucket-btn" class="subtle-btn">Reset All</button>
+        <button type="button" class="primary-btn" data-close-modal>Done for Now 💚</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. "A QUESTION FOR YOU" MODAL -->
+  <div id="question-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="question-modal-title">
+    <div class="modal-overlay-close" data-close-modal></div>
+    <div class="question-modal-card card-stationery paper-texture">
+      <button type="button" class="modal-close-btn" data-close-modal aria-label="Close question">&times;</button>
+      
+      <div class="question-mascot-wrap">
+        <img src="assets/stickers/pochacco-tulips.svg" alt="Pochacco puppy" class="mascot-img bounce-gentle">
+      </div>
+
+      <h3 id="question-modal-title" class="question-title">Will you keep making little memories with me?</h3>
+      <p class="question-subtitle">On quiet rainy afternoons, sunny walks, late-night games, and ordinary days.</p>
+
+      <div class="question-choices-group" id="question-choices">
+        <button type="button" class="question-choice-btn choice-a" data-choice="a">
+          <span>Yes, of course! 🌿</span>
+        </button>
+        <button type="button" class="question-choice-btn choice-b" data-choice="b">
+          <span>Yes, forever and always! 💚</span>
+        </button>
+      </div>
+
+      <div id="question-answer-box" class="question-answer-box hidden">
+        <div class="answer-heart-burst">✨ 💚 🌷 ✨</div>
+        <p id="question-answer-text" class="question-answer-text">
+          That’s all I ever wanted to hear. You make every ordinary day extraordinary.
+        </p>
+        <button type="button" class="primary-btn modal-action-close" data-close-modal>
+          <span>Forever &amp; Always</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. RANDOM LOVE NOTE / SURPRISE POPUP MODAL -->
+  <div id="surprise-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="surprise-title">
+    <div class="modal-overlay-close" data-close-modal></div>
+    <div class="surprise-modal-card card-stationery paper-texture">
+      <button type="button" class="modal-close-btn" data-close-modal aria-label="Close note">&times;</button>
+      
+      <div class="surprise-badge">
+        <span>✨ A Little Note for Today</span>
+      </div>
+
+      <div class="surprise-note-content">
+        <p id="surprise-text" class="surprise-text">“Just in case no one told you today: you are my favorite person in the entire world.”</p>
+      </div>
+
+      <div class="surprise-footer">
+        <button type="button" id="draw-another-surprise-btn" class="subtle-btn">
+          <span>Draw another note 🌿</span>
+        </button>
+        <button type="button" class="primary-btn" data-close-modal>
+          <span>Saved in my heart 💚</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden HTML5 Audio Element for Background Music -->
+  <audio id="bg-audio-player" preload="auto"></audio>
+
+  <!-- Hidden Background YouTube Audio Host (Off-screen so NO video is ever shown on pages) -->
+  <div class="hidden-youtube-player-host" id="yt-player-container" aria-hidden="true"></div>
+
+  <!-- Sweet Toast Notifications Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- YouTube IFrame API for Seamless Background Soundtrack Playback -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="script.js"></script>
+</body>
+</html>

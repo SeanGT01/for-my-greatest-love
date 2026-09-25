@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="600" height="500">
+  <defs>
+    <linearGradient id="photoGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A8BFA0" />
+      <stop offset="100%" stop-color="#FFF9EE" />
+    </linearGradient>
+    <pattern id="grain" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1" fill="#FFFFFF" opacity="0.3" />
+      <circle cx="30" cy="25" r="1.5" fill="#355C43" opacity="0.1" />
+      <circle cx="20" cy="35" r="0.8" fill="#FFFFFF" opacity="0.3" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="500" fill="url(#photoGrad)" />
+  <rect width="600" height="500" fill="url(#grain)" />
+
+  <!-- Soft Romantic Vignette -->
+  <circle cx="300" cy="220" r="160" fill="#FFFFFF" opacity="0.25" />
+
+  <!-- Center Artwork / Illustration based on theme -->
+  <g transform="translate(240, 140)">
+    
+    <rect x="30" y="40" width="55" height="45" rx="10" fill="#FFF9EE" stroke="#355C43" stroke-width="3" />
+    <path d="M 85 50 C 96 50, 96 65, 85 68" fill="none" stroke="#355C43" stroke-width="3" />
+    <path d="M 45 32 Q 50 20 48 10 M 60 32 Q 65 20 63 10" fill="none" stroke="#355C43" stroke-width="2" stroke-linecap="round" />
+    <circle cx="57" cy="62" r="8" fill="#A8BFA0" />
+  
+  </g>
+
+  <!-- Photo Title and Caption -->
+  <rect x="40" y="390" width="520" height="75" rx="16" fill="#FFF9EE" opacity="0.92" />
+  <text x="300" y="425" font-family="'Georgia', serif" font-size="22" font-weight="bold" fill="#355C43" text-anchor="middle">Our Cozy Little Dates</text>
+  <text x="300" y="452" font-family="'Courier New', monospace" font-size="14" fill="#666666" text-anchor="middle">Replace with assets/photos/memory-03.jpg</text>
+  
+  <!-- Corner tulip watermark -->
+  <path d="M 25 35 Q 25 15 45 15 M 25 35 Q 45 35 45 15" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.6" />
+</svg>

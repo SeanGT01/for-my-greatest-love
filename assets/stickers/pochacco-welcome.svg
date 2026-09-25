@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <filter id="soft-shadow-welcome" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#355C43" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <g filter="url(#soft-shadow-welcome)">
+    <!-- Ground Shadow -->
+    <ellipse cx="100" cy="180" rx="55" ry="10" fill="#355C43" opacity="0.15" />
+
+    <!-- Pochacco Body -->
+    <!-- Tail (floppy little black tail) -->
+    <path d="M 60 162 C 45 160, 42 148, 50 144 C 58 140, 62 152, 60 162 Z" fill="#222222" />
+
+    <!-- Body -->
+    <ellipse cx="100" cy="145" rx="34" ry="32" fill="#FFFFFF" stroke="#355C43" stroke-width="2.5" />
+
+    <!-- Cute Soft Forest-Green Tee -->
+    <path d="M 72 135 Q 100 142 128 135 C 131 152, 126 166, 100 168 C 74 166, 69 152, 72 135 Z" fill="#355C43" />
+    <!-- T-shirt collar -->
+    <path d="M 88 135 Q 100 141 112 135" fill="none" stroke="#A8BFA0" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Feet -->
+    <ellipse cx="80" cy="175" rx="14" ry="9" fill="#FFFFFF" stroke="#355C43" stroke-width="2.2" />
+    <ellipse cx="120" cy="175" rx="14" ry="9" fill="#FFFFFF" stroke="#355C43" stroke-width="2.2" />
+
+    <!-- Pochacco Left Ear (Floppy Black Ear) -->
+    <!-- Left ear hanging down -->
+    <path d="M 68 55 C 42 45, 26 72, 38 102 C 45 118, 62 108, 64 90 C 65 78, 65 62, 68 55 Z" fill="#222222" />
+
+    <!-- Pochacco Right Ear (Floppy Black Ear) -->
+    <!-- Right ear hanging down -->
+    <path d="M 132 55 C 158 45, 174 72, 162 102 C 155 118, 138 108, 136 90 C 135 78, 135 62, 132 55 Z" fill="#222222" />
+
+    <!-- Pochacco Head (Round white puppy head) -->
+    <ellipse cx="100" cy="82" rx="46" ry="40" fill="#FFFFFF" stroke="#355C43" stroke-width="2.5" />
+
+    <!-- Iconic 3 Spiky Black Hairs on Top -->
+    <path d="M 96 44 L 94 32 L 98 42 Z" fill="#222222" />
+    <path d="M 100 42 L 101 28 L 103 42 Z" fill="#222222" />
+    <path d="M 104 43 L 108 34 L 105 44 Z" fill="#222222" />
+
+    <!-- Face Details -->
+    <!-- Left Eye (Cute black oval) -->
+    <ellipse cx="82" cy="80" rx="3.5" ry="5.5" fill="#222222" />
+    <!-- Right Eye (Cute black oval) -->
+    <ellipse cx="118" cy="80" rx="3.5" ry="5.5" fill="#222222" />
+
+    <!-- Sweet Blush Cheeks -->
+    <ellipse cx="73" cy="91" rx="7" ry="4" fill="#F7D6D0" opacity="0.85" />
+    <ellipse cx="127" cy="91" rx="7" ry="4" fill="#F7D6D0" opacity="0.85" />
+
+    <!-- Nose (Small cute black oval) -->
+    <ellipse cx="100" cy="87" rx="4.5" ry="3.5" fill="#222222" />
+
+    <!-- Gentle Puppy Smile -->
+    <path d="M 95 93 Q 100 97 105 93" fill="none" stroke="#222222" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Accessories & Props -->
+    
+      <!-- Envelope -->
+      <g transform="translate(65, 115) rotate(-5)">
+        <rect x="0" y="0" width="70" height="46" rx="4" fill="#FFF9EE" stroke="#355C43" stroke-width="2.5" />
+        <path d="M 0 0 L 35 25 L 70 0" fill="none" stroke="#A8BFA0" stroke-width="2" />
+        <path d="M 0 46 L 25 20 M 70 46 L 45 20" stroke="#E5EEDD" stroke-width="1.8" />
+        <!-- Wax Seal -->
+        <circle cx="35" cy="24" r="8" fill="#355C43" />
+        <path d="M 35 22 C 34 20, 31 20, 31 22 C 31 24, 35 26.5, 35 27 C 35 26.5, 39 24, 39 22 C 39 20, 36 20, 35 22 Z" fill="#E5EEDD" />
+      </g>
+    
+
+    <!-- Paws -->
+    
+      <!-- Puppy Paws holding envelope -->
+      <ellipse cx="68" cy="136" rx="10" ry="8" fill="#FFFFFF" stroke="#355C43" stroke-width="2" />
+      <ellipse cx="132" cy="132" rx="10" ry="8" fill="#FFFFFF" stroke="#355C43" stroke-width="2" />
+    
+
+    <!-- Extra touches -->
+    
+      <!-- Little floating heart -->
+      <path d="M 155 70 C 155 64, 147 64, 147 70 C 147 75, 155 80, 155 81 C 155 80, 163 75, 163 70 C 163 64, 155 64, 155 70 Z" fill="#A8BFA0" transform="scale(1.2) translate(-20, -10)" />
+    
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 170" width="140" height="170">
+  <defs>
+    <filter id="stampShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#355C43" flood-opacity="0.15" />
+    </filter>
+  </defs>
+  <!-- Perforated Stamp Edge -->
+  <rect x="5" y="5" width="130" height="160" rx="4" fill="#FFF9EE" stroke="#355C43" stroke-width="2.5" stroke-dasharray="6,4" filter="url(#stampShadow)" />
+  <!-- Stamp Inner Border -->
+  <rect x="14" y="14" width="112" height="142" rx="2" fill="#E5EEDD" stroke="#A8BFA0" stroke-width="1.5" />
+  <!-- Tulip Art inside Stamp -->
+  <g transform="translate(10, 5) scale(0.8)">
+    <path d="M 75 100 Q 75 130 75 150" stroke="#355C43" stroke-width="3" stroke-linecap="round" />
+    <path d="M 75 120 Q 95 110 100 90 Q 88 102 75 110" fill="#A8BFA0" stroke="#355C43" stroke-width="1.5" />
+    <path d="M 58 75 C 50 55, 55 35, 75 30 C 70 45, 68 62, 65 77 Z" fill="#A8BFA0" stroke="#355C43" stroke-width="1.8" />
+    <path d="M 92 75 C 100 55, 95 35, 75 30 C 80 45, 82 62, 85 77 Z" fill="#A8BFA0" stroke="#355C43" stroke-width="1.8" />
+    <path d="M 63 78 C 58 55, 68 28, 75 26 C 82 28, 92 55, 87 78 Z" fill="#FFF9EE" stroke="#355C43" stroke-width="1.8" />
+  </g>
+  <!-- Stamp Text & Postmark -->
+  <text x="70" y="142" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#355C43" text-anchor="middle" letter-spacing="2">SPECIAL EDITION</text>
+  <!-- Circular Postmark Stamp -->
+  <g transform="translate(85, 45) rotate(-20)" stroke="#355C43" opacity="0.6">
+    <circle cx="20" cy="20" r="22" fill="none" stroke-width="1.2" stroke-dasharray="3,2" />
+    <circle cx="20" cy="20" r="16" fill="none" stroke-width="1" />
+    <text x="20" y="18" font-family="sans-serif" font-size="6" text-anchor="middle" font-weight="bold" fill="#355C43" stroke="none">FOREVER</text>
+    <text x="20" y="26" font-family="sans-serif" font-size="5" text-anchor="middle" fill="#355C43" stroke="none">WITH YOU</text>
+  </g>
+</svg>

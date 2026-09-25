@@ -1,0 +1,14 @@
+# Prevent audio media files from being committed (avoid copyright & large file issues)
+*.mp3
+*.wav
+*.m4a
+*.ogg
+*.flac
+*.aac
+
+# System & Editor files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

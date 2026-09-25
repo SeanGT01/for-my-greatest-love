@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 180" width="120" height="180">
+  <defs>
+    <linearGradient id="stemGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#355C43" />
+      <stop offset="100%" stop-color="#A8BFA0" />
+    </linearGradient>
+    <linearGradient id="petalGrad1" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#355C43" />
+      <stop offset="50%" stop-color="#A8BFA0" />
+      <stop offset="100%" stop-color="#E5EEDD" />
+    </linearGradient>
+    <linearGradient id="petalGrad2" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#A8BFA0" />
+      <stop offset="100%" stop-color="#FFF9EE" />
+    </linearGradient>
+  </defs>
+  <!-- Leaves -->
+  <path d="M 58 120 Q 30 110 20 80 Q 35 85 58 105" fill="#A8BFA0" stroke="#355C43" stroke-width="2" />
+  <path d="M 62 135 Q 95 125 102 95 Q 85 105 62 118" fill="#E5EEDD" stroke="#355C43" stroke-width="2" />
+  <!-- Stem -->
+  <path d="M 60 65 Q 58 120 60 170" fill="none" stroke="url(#stemGrad)" stroke-width="4.5" stroke-linecap="round" />
+  <!-- Outer Petals -->
+  <path d="M 38 65 C 28 40, 32 18, 55 12 C 50 32, 50 50, 48 68 Z" fill="url(#petalGrad1)" stroke="#355C43" stroke-width="2.2" />
+  <path d="M 82 65 C 92 40, 88 18, 65 12 C 70 32, 70 50, 72 68 Z" fill="url(#petalGrad1)" stroke="#355C43" stroke-width="2.2" />
+  <!-- Center Main Petal -->
+  <path d="M 44 68 C 38 42, 48 10, 60 8 C 72 10, 82 42, 76 68 Z" fill="url(#petalGrad2)" stroke="#355C43" stroke-width="2.2" />
+  <!-- Delicate vein lines -->
+  <path d="M 60 62 L 60 18" stroke="#355C43" stroke-width="1.2" stroke-linecap="round" opacity="0.4" />
+</svg>
