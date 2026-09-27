@@ -54,6 +54,22 @@ const PLAYLIST = [
     youtubeUrl: "https://www.youtube.com/watch?v=5T2auSa7gvU",
     startSeconds: 0,
     note: "“Kapag ang puso'y natutong magmahal, bawat tibok ay may kulay at buhay… Pangakong magmahal hanggang libing, doon hihintayin itong bato sa buhangin.” 🌊🤍"
+  },
+  {
+    title: "Last Night on Earth",
+    artist: "Green Day",
+    youtubeId: "jpssjjLrzUQ",
+    youtubeUrl: "https://www.youtube.com/watch?v=jpssjjLrzUQ",
+    startSeconds: 0,
+    note: "“You are the moonlight of my life every night… my beating heart belongs to you, I walked for miles 'til I found you, sending all my love to you.” 🌙🤍"
+  },
+  {
+    title: "Lost in Love",
+    artist: "Air Supply",
+    youtubeId: "SDeVWw4m-aQ", // Studio audio version - Zero crowd clapping or live noise, starts straight into the music!
+    youtubeUrl: "https://www.youtube.com/watch?v=SDeVWw4m-aQ",
+    startSeconds: 0,
+    note: "“I'm lost in love and I don't know much, 'cause I think we still have time… and all of the love that you gave to me is the only thing I'm feeling.” 🌸🤍"
   }
 ];
 
