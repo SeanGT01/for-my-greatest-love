@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body class="theme-light">
   <!-- Floating Hearts & Petals Canvas/Container -->
@@ -511,7 +511,7 @@
       </div>
 
       <!-- 4 Interactive Feature Cards -->
-      <div class="interactive-cards-grid">
+      <div class="interactive-cards-grid stagger-children">
         <!-- Card 1: Things I Love About You -->
         <div class="interactive-card paper-texture" id="card-things-love" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="card-icon-badge">💌</div>
@@ -639,7 +639,7 @@
 
           <div class="parchment-signoff">
             <p class="signoff-closing">With all my love,</p>
-            <p class="signoff-signature">Your favorite person. 🌿</p>
+            <p class="signoff-signature">Your Baby. 🌿</p>
           </div>
 
           <div class="parchment-footer-transition">
@@ -819,25 +819,32 @@
   <!-- 2. HANDWRITTEN LETTER MODAL (Generic / Confession / Hard Days) -->
   <div id="letter-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="letter-modal-title">
     <div class="modal-overlay-close" data-close-modal></div>
-    <div class="letter-modal-card card-stationery paper-texture">
+    <div class="letter-modal-card card-stationery paper-texture" id="letter-modal-card">
       <button type="button" class="modal-close-btn" data-close-modal aria-label="Close letter">&times;</button>
       
-      <div class="letter-modal-header">
-        <div class="letter-modal-stamp">
-          <img src="assets/stickers/postage-stamp.svg" alt="" class="stamp-mini">
+      <!-- Top & Bottom Pinned Scroll Fade Vignettes -->
+      <div class="letter-modal-scroll-fade-top" id="letter-fade-top" aria-hidden="true"></div>
+      <div class="letter-modal-scroll-fade-bottom" id="letter-fade-bottom" aria-hidden="true"></div>
+
+      <!-- Scrollable Inner Content Area -->
+      <div class="letter-modal-content-scroll" id="letter-modal-content-scroll">
+        <div class="letter-modal-header">
+          <div class="letter-modal-stamp">
+            <img src="assets/stickers/postage-stamp.svg" alt="" class="stamp-mini">
+          </div>
+          <span id="letter-modal-badge" class="letter-badge">Personal Letter</span>
+          <h3 id="letter-modal-title" class="letter-modal-title">Letter Title</h3>
         </div>
-        <span id="letter-modal-badge" class="letter-badge">Personal Letter</span>
-        <h3 id="letter-modal-title" class="letter-modal-title">Letter Title</h3>
-      </div>
 
-      <div class="letter-modal-body" id="letter-modal-body">
-        <!-- Injected via JavaScript -->
-      </div>
+        <div class="letter-modal-body" id="letter-modal-body">
+          <!-- Injected via JavaScript -->
+        </div>
 
-      <div class="letter-modal-footer">
-        <button type="button" class="primary-btn modal-action-close" data-close-modal>
-          <span>Keep in my heart 💚</span>
-        </button>
+        <div class="letter-modal-footer">
+          <button type="button" class="primary-btn modal-action-close" data-close-modal>
+            <span>Keep in my heart 💚</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

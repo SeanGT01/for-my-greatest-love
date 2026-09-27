@@ -1882,6 +1882,7 @@ function setupEventListeners() {
     elements.unfoldedLetter.classList.remove('hidden');
     spawnHeartBurst();
     showToast("Your letter is open 💌");
+    initParchmentParagraphFades();
   });
 
   elements.continueToGardenBtn.addEventListener('click', () => {
@@ -2057,6 +2058,53 @@ function setupEventListeners() {
   elements.miniPlayerToggleBtn.addEventListener('click', () => {
     elements.miniMusicPlayer.classList.toggle('hidden');
   });
+
+  initLetterModalScrollFade();
+}
+
+function initLetterModalScrollFade() {
+  const scrollContainer = document.getElementById('letter-modal-content-scroll') || document.querySelector('.letter-modal-card');
+  if (!scrollContainer) return;
+
+  const onScroll = () => {
+    updateModalEdgeFades();
+  };
+
+  scrollContainer.addEventListener('scroll', onScroll, { passive: true });
+}
+
+function updateModalEdgeFades() {
+  const card = document.getElementById('letter-modal-card') || document.querySelector('.letter-modal-card');
+  const scrollContainer = document.getElementById('letter-modal-content-scroll') || card;
+  if (!card || !scrollContainer) return;
+
+  const scrollTop = scrollContainer.scrollTop;
+  const scrollHeight = scrollContainer.scrollHeight;
+  const clientHeight = scrollContainer.clientHeight;
+  const maxScroll = scrollHeight - clientHeight;
+
+  if (maxScroll <= 8) {
+    card.classList.add('no-scroll');
+    card.classList.remove('is-scrolled');
+    card.classList.add('is-scrolled-bottom');
+    return;
+  }
+
+  card.classList.remove('no-scroll');
+
+  // Top fade dissolves in when scrolled down > 10px
+  if (scrollTop > 10) {
+    card.classList.add('is-scrolled');
+  } else {
+    card.classList.remove('is-scrolled');
+  }
+
+  // Bottom fade dissolves out when reader reaches the very bottom (footer button)
+  if (scrollTop >= maxScroll - 16) {
+    card.classList.add('is-scrolled-bottom');
+  } else {
+    card.classList.remove('is-scrolled-bottom');
+  }
 }
 
 function openLetterModal({ badge, title, body }) {
@@ -2064,6 +2112,65 @@ function openLetterModal({ badge, title, body }) {
   elements.letterModalTitle.textContent = title;
   elements.letterModalBody.innerHTML = body;
   elements.letterModal.classList.remove('hidden');
+
+  const card = document.getElementById('letter-modal-card') || document.querySelector('.letter-modal-card');
+  const scrollContainer = document.getElementById('letter-modal-content-scroll') || card;
+
+  if (card && scrollContainer) {
+    scrollContainer.scrollTop = 0;
+    card.classList.remove('is-scrolled');
+    card.classList.remove('is-scrolled-bottom');
+    card.classList.remove('no-scroll');
+
+    setTimeout(() => {
+      updateModalEdgeFades();
+    }, 40);
+
+    setTimeout(() => {
+      updateModalEdgeFades();
+    }, 150);
+  }
+}
+
+function initParchmentParagraphFades() {
+  const letter = document.getElementById('unfolded-letter');
+  if (!letter || letter.classList.contains('hidden')) return;
+
+  const paras = letter.querySelectorAll('.parchment-body p');
+  paras.forEach(p => p.classList.remove('in-reading-view'));
+
+  updateParchmentParagraphFades();
+
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-reading-view');
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -12% 0px',
+      threshold: 0.1
+    });
+
+    paras.forEach(p => obs.observe(p));
+  }
+}
+
+function updateParchmentParagraphFades() {
+  const letter = document.getElementById('unfolded-letter');
+  if (!letter || letter.classList.contains('hidden')) return;
+
+  const paras = letter.querySelectorAll('.parchment-body p');
+  const windowHeight = window.innerHeight;
+
+  paras.forEach(p => {
+    const rect = p.getBoundingClientRect();
+    if (rect.top < windowHeight * 0.86 && rect.bottom > 20) {
+      p.classList.add('in-reading-view');
+    }
+  });
 }
 
 function openRandomSurprise() {
@@ -2090,6 +2197,9 @@ function handleWindowScroll() {
   if (elements.readingProgressBar) {
     elements.readingProgressBar.style.width = `${scrollPercent}%`;
   }
+
+  // Update Chapter 4 unfolded letter reading fade on scroll
+  updateParchmentParagraphFades();
 
   // Toggle Back to Top button
   if (elements.backToTopBtn) {
@@ -2256,10 +2366,16 @@ function initScrollReveal() {
     // Ch1 timeline cards — slide in from their layout side
     { selector: '.timeline-card.card-left',    cls: 'reveal-left'  },
     { selector: '.timeline-card.card-right',   cls: 'reveal-right' },
-    // Interactive feature cards — pop up
+    // Interactive feature cards — pop up (including Card 4: Hard Days)
     { selector: '.interactive-card',           cls: 'reveal-pop'   },
-    // Letter / closing section
-    { selector: '.letter-section',             cls: 'reveal-up'    },
+    // Ch1 Confession Button ("What I never told you")
+    { selector: '.chapter-action-box',         cls: 'reveal-up'    },
+    { selector: '#ch1-confession-btn',         cls: 'reveal-pop'   },
+    // Ch4 Letter Showcase & Sealed Envelope
+    { selector: '.letter-showcase-container',  cls: 'reveal-up'    },
+    { selector: '.sealed-envelope-card',       cls: 'reveal-pop'   },
+    { selector: '.unfolded-parchment-letter',  cls: 'reveal-up'    },
+    // Closing section
     { selector: '.closing-section',            cls: 'reveal-up'    },
     // Memory doodles — subtle float up with slight delay
     { selector: '.memory-doodle',              cls: 'reveal-up'    },
